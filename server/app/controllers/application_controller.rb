@@ -14,6 +14,8 @@ class ApplicationController < ActionController::API
       token = auth_header.split(' ')[1] #[Bearer, <token>]
       begin
         JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
+
+        
         # JWT.decode => [{ "user_id"=>"2" }, { "alg"=>"HS256" }]
       rescue JWT::DecodeError
         nil
